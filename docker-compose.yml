@@ -1,0 +1,33 @@
+version: '2.0'
+services:
+  postgres:
+    container_name: postgres
+    environment:
+    - DEBUG=false
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=masterkey
+    image: postgres:10-alpine
+    restart: always
+    ports:
+    - "5432:5432"
+    volumes:
+    - ./postgres/bkp:/opt/bkp
+    - ./postgres/data:/var/lib/postgresql/data
+  portainer:
+    container_name: portainer
+    image: portainer/portainer
+    restart: always
+    ports:
+    - "9000:9000"
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /media/aureliorezendecosta/7f8da0bd-4816-43a1-a472-321a203b9090/volumes/portainer/data:/data portainer/portainer
+  pgAdmin4:
+    container_name: pgAdmin4
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+    - PGADMIN_DEFAULT_EMAIL=postgres
+    - PGADMIN_DEFAULT_PASSWORD=masterkey
+    ports:
+      - "15432:80"
