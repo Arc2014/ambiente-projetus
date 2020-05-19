@@ -11,7 +11,7 @@ Docker -> sudo apt install docker.io docker-compose
   postgres  -- banco de dados
   pgAdmin4  -- cliente de banco dados
   
-./stop.sh --> Para servicos
+./stop.sh --> Para os servicos
 
 ./restore.sh --> Executa o a restauração do banco de dados
   Baixar e deixar a base calima-testes.backup dentro do volume mapeado no docker-compose;
