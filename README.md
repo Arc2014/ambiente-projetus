@@ -1,6 +1,10 @@
 # ambiente-projetus
 
-!!!Recomendo executar clone na sua pasta de desenvolvimento 
+Pré requisitos:
+Docker -> sudo apt install docker.io docker-compose
+          sudo usermod -aG docker $USER
+          
+!!!Recomendo executar clone na sua pasta de desenvolvimento!!!
 
 ./start.sh --> Constrói e sob os containers e serviços:
   portainer -- Administrador de containers
