@@ -30,6 +30,8 @@ then
         #Restore
         echo "RESTAURANDO $DB_NAME..."
         docker exec -t postgres sh -c 'pg_restore -U postgres -v --dbname '$DB_NAME' /opt/bkp/calima.backup'
+        #Ajustando BD
+        ./script.sh $DB_NAME
         echo "DELETANDO ARQUIVO DE BACKUP"
         rm $PATH_VOLUME
         echo "Fim !!!"
@@ -50,6 +52,8 @@ then
     #Restore
     echo "RESTAURANDO $DB_NAME..."
     docker exec -t postgres sh -c 'pg_restore -U postgres -v --dbname '$DB_NAME' /opt/bkp/calima-testes.backup'
+    #Ajustando BD
+    ./script.sh $DB_NAME
     echo "Fim !!!"
 else
     echo "Nome do banco não informado"
