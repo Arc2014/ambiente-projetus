@@ -33,7 +33,7 @@ then
         #Ajustando BD
         ./script.sh $DB_NAME
         echo "DELETANDO ARQUIVO DE BACKUP"
-        rm $PATH_VOLUME
+        sudo rm $PATH_VOLUME
         echo "Fim !!!"
     else
         echo "Backup não encontrado"
