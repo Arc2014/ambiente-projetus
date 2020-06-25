@@ -3,6 +3,7 @@
 PATH_DOWNLOAD=/home/aureliorezendecosta/Downloads/
 PATH_VOLUME=./postgres/bkp/calima.backup
 BACKUP_FILE=""
+START_RESTORE=""
 
 echo "Digite o nome do BD ->> "
 read DB_NAME
@@ -28,13 +29,15 @@ then
         echo "$(date +'%m/%d/%Y - %H:%M:%S') -> CRIANDO BD $DB_NAME"
         docker exec -t postgres sh -c "psql -U postgres -c 'create database $DB_NAME;'"
         #Restore
+        START_RESTORE="$(date +'%m/%d/%Y - %H:%M:%S')"
         echo "$(date +'%m/%d/%Y - %H:%M:%S') -> RESTAURANDO $DB_NAME..."
         docker exec -t postgres sh -c 'pg_restore -U postgres -v --dbname '$DB_NAME' /opt/bkp/calima.backup'
         #Ajustando BD
         ./script.sh $DB_NAME
         echo "$(date +'%m/%d/%Y - %H:%M:%S') -> DELETANDO ARQUIVO DE BACKUP"
         sudo rm $PATH_VOLUME
-        echo "$(date +'%m/%d/%Y - %H:%M:%S') -> Fim !!!"
+        echo "$START_RESTORE -> INICIO !!!"
+        echo "$(date +'%m/%d/%Y - %H:%M:%S') -> FIM !!!"
     else
         echo "$(date +'%m/%d/%Y - %H:%M:%S') -> Backup não encontrado"
     fi
@@ -50,11 +53,13 @@ then
     echo "$(date +'%m/%d/%Y - %H:%M:%S') -> CRIANDO BD $DB_NAME"
     docker exec -t postgres sh -c "psql -U postgres -c 'create database $DB_NAME;'"
     #Restore
+    START_RESTORE="$(date +'%m/%d/%Y - %H:%M:%S')"
     echo "$(date +'%m/%d/%Y - %H:%M:%S') -> RESTAURANDO $DB_NAME..."
     docker exec -t postgres sh -c 'pg_restore -U postgres -v --dbname '$DB_NAME' /opt/bkp/calima-testes.backup'
     #Ajustando BD
     ./script.sh $DB_NAME
-    echo "$(date +'%m/%d/%Y - %H:%M:%S') -> Fim !!!"
+    echo "$START_RESTORE -> INICIO !!!"
+    echo "$(date +'%m/%d/%Y - %H:%M:%S') -> FIM !!!"
 else
     echo "$(date +'%m/%d/%Y - %H:%M:%S') -> Nome do banco não informado"
 fi
