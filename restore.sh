@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PATH_DOWNLOAD=/home/aureliorezendecosta/Downloads/
+PATH_DOWNLOAD=/home/arcosta/Downloads/
 PATH_VOLUME=./postgres/bkp/calima.backup
 BACKUP_FILE=""
 START_RESTORE=""
