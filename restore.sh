@@ -28,7 +28,7 @@ then
         docker exec -it postgres psql -U postgres -c "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '$DB_NAME';" 
         #Drop database
         echo "$(date +'%m/%d/%Y - %H:%M:%S') -> DROPANDO BD $DB_NAME"
-        docker exec -t postgres sh -c "psql -U postgres -c 'drop database $DB_NAME if exists;'"
+        docker exec -t postgres sh -c "psql -U postgres -c 'drop database $DB_NAME;'"
         #Create database
         echo "$(date +'%m/%d/%Y - %H:%M:%S') -> CRIANDO BD $DB_NAME"
         docker exec -t postgres sh -c "psql -U postgres -c 'create database $DB_NAME;'"
