@@ -13,6 +13,8 @@ echo
 if [ -n "$DB_NAME" -a $DB_NAME != "calima_testes" ]
 then
     unzip -u "$PATH_DOWNLOAD*calima*.zip" -d $PATH_BACKUP_CALIMA
+    unzip -u "$PATH_DOWNLOAD*automatico*.zip" -d $PATH_BACKUP_CALIMA
+
     BACKUP_FILE=$(zenity --file-selection --class=CalimaServer --title="Selecione o Arquivo de Backup"  --file-filter='Backup do PostgreSQL (.backup) | *.backup' )
     echo "BACKUP ->> " $BACKUP_FILE
     
@@ -26,7 +28,7 @@ then
         docker exec -it postgres psql -U postgres -c "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '$DB_NAME';" 
         #Drop database
         echo "$(date +'%m/%d/%Y - %H:%M:%S') -> DROPANDO BD $DB_NAME"
-        docker exec -t postgres sh -c "psql -U postgres -c 'drop database $DB_NAME;'"
+        docker exec -t postgres sh -c "psql -U postgres -c 'drop database $DB_NAME if exists;'"
         #Create database
         echo "$(date +'%m/%d/%Y - %H:%M:%S') -> CRIANDO BD $DB_NAME"
         docker exec -t postgres sh -c "psql -U postgres -c 'create database $DB_NAME;'"
