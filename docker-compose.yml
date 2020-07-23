@@ -18,7 +18,7 @@ services:
     image: portainer/portainer
     restart: always
     ports:
-    - "9000:9000"
+    - "9001:9000"
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     - /media/aureliorezendecosta/7f8da0bd-4816-43a1-a472-321a203b9090/volumes/portainer/data:/data portainer/portainer
@@ -31,3 +31,14 @@ services:
     - PGADMIN_DEFAULT_PASSWORD=masterkey
     ports:
       - "15432:80"
+  sonarQube:
+    container_name: sonarQube
+    image: sonarqube:8-community
+    restart: always
+    volumes:
+    - ./sonar/conf:/opt/sonarqube/conf
+    - ./sonar/data:/opt/sonarqube/data
+    - ./sonar/logs:/opt/sonarqube/logs
+    - ./sonar/extensions:/opt/sonarqube/extensions
+    ports:
+    - "9000:9000"

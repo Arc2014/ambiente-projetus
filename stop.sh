@@ -9,3 +9,7 @@ docker container stop postgres
 #Stop PgAdmin4
 
 docker container stop pgAdmin4
+
+#Stop Sonnar
+
+docker container stop sonarQube
