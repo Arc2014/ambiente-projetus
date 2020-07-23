@@ -33,12 +33,13 @@ services:
       - "15432:80"
   sonarQube:
     container_name: sonarQube
-    image: sonarqube:8-community
+    image: sonarqube:lts
     restart: always
     volumes:
     - ./sonar/conf:/opt/sonarqube/conf
     - ./sonar/data:/opt/sonarqube/data
     - ./sonar/logs:/opt/sonarqube/logs
     - ./sonar/extensions:/opt/sonarqube/extensions
+    - ./sonar/plugins:/opt/sonarqube/lib/bundled-plugins
     ports:
     - "9000:9000"
