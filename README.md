@@ -28,4 +28,4 @@ Dar permissão de escrita as pastas necessarias caso houver erro de permissão
   * Baixar e deixar a base calima-testes.backup dentro do volume mapeado no docker-compose;
   * Informar o nome do banco **calima_testes** para sempre restaurar esse banco para testes;
   
-  * Caso informar qualquer outro nome de banco abrirá uma janela para selecionar onde está o arquivo de backup para restauração.
+  * Caso informar qualquer outro nome de banco o script irá na sua pasta de Downloads extrair o zip de backup, logo após abrirá uma janela para selecionar onde está o arquivo de backup para restauração.
