@@ -6,6 +6,8 @@
 sudo apt install docker.io docker-compose
 sudo usermod -aG docker $USER
 ```
+Atualizar constantes com os PATHS da sua máquina
+Dar permissão de escrita as pastas necessarias caso houver erro de permissão
 
 ## Scripts
 
@@ -16,6 +18,7 @@ sudo usermod -aG docker $USER
   * portainer -- Administrador de containers
   * postgres  -- banco de dados
   * pgAdmin4  -- cliente de banco dados
+  * sonarQube -- Analisador de codigo 
 
 ###### Stop  
 ./stop.sh --> Para os servicos
@@ -23,6 +26,6 @@ sudo usermod -aG docker $USER
 ###### Restore
 ./restore.sh --> Executa o a restauração do banco de dados
   * Baixar e deixar a base calima-testes.backup dentro do volume mapeado no docker-compose;
-  * Informar o nome do banco calima_testes para sempre restaurar esse banco para testes;
+  * Informar o nome do banco **calima_testes** para sempre restaurar esse banco para testes;
   
   * Caso informar qualquer outro nome de banco abrirá uma janela para selecionar onde está o arquivo de backup para restauração.
