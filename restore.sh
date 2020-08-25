@@ -2,7 +2,7 @@
 
 PATH_DOWNLOAD=/home/arcosta/Downloads/
 PATH_BACKUP_CALIMA=/home/arcosta/Downloads/_backup
-PATH_VOLUME=./postgres/bkp/calima.backup
+PATH_VOLUME=/desenv/volumes/postgres/bkp/calima.backup
 BACKUP_FILE=""
 START_RESTORE=""
 

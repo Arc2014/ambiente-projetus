@@ -1,0 +1,37 @@
+version: '2.0'
+services:
+  postgres:
+    container_name: postgres
+    environment:
+    - DEBUG=false
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=masterkey
+    image: postgres:10-alpine
+    restart: always
+    ports:
+    - "5432:5432"
+    volumes:
+    - /desenv/volumes/postgres/bkp:/opt/bkp
+    - /desenv/volumes/postgres/data:/var/lib/postgresql/data
+  calima_beta:
+    container_name: calima_beta
+    mem_limit: 2564816896
+    environment:
+      - JAVA_OPTS=-Xms1224m -Xmx1224m -Xss228k -XX:MinHeapFreeRatio=20 -XX:MaxHeapFreeRatio=40 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -DShowLog=true -Djava.awt.headless=true -Duser.timezone=GMT-3 -Duser.language=pt -Duser.country=BR -Dcalima.datasource.url=jdbc:postgresql://postgres:5432/calima -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000
+      - JPDA_ADDRESS=8000
+      - JPDA_TRANSPORT=dt_socket
+    image: docker-images.projetusti.com.br/calima:beta
+    links:
+      - postgres
+    ports:
+      - "8081:8080"
+      - "8000:8000"
+  portainer:
+    container_name: portainer
+    image: portainer/portainer
+    restart: always
+    ports:
+    - "9001:9000"
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /desenv/volumes/portainer/data:/data portainer/portainer

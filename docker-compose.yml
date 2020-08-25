@@ -11,8 +11,8 @@ services:
     ports:
     - "5432:5432"
     volumes:
-    - ./postgres/bkp:/opt/bkp
-    - ./postgres/data:/var/lib/postgresql/data
+    - /desenv/volumes/postgres/bkp:/opt/bkp
+    - /desenv/volumes/data:/var/lib/postgresql/data
   portainer:
     container_name: portainer
     image: portainer/portainer
@@ -21,7 +21,7 @@ services:
     - "9001:9000"
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-    - /media/aureliorezendecosta/7f8da0bd-4816-43a1-a472-321a203b9090/volumes/portainer/data:/data portainer/portainer
+    - /desenv/volumes/portainer/data:/data portainer/portainer
   pgAdmin4:
     container_name: pgAdmin4
     image: dpage/pgadmin4
@@ -32,14 +32,14 @@ services:
     ports:
       - "15432:80"
   sonarQube:
-    container_name: sonarQube
+    container_name: sonar_qube
     image: sonarqube:lts
     restart: always
     volumes:
-    - ./sonar/conf:/opt/sonarqube/conf
-    - ./sonar/data:/opt/sonarqube/data
-    - ./sonar/logs:/opt/sonarqube/logs
-    - ./sonar/extensions:/opt/sonarqube/extensions
-    - ./sonar/plugins:/opt/sonarqube/lib/bundled-plugins
+    - /desenv/volumes/sonar/conf:/opt/sonarqube/conf
+    - /desenv/volumes/sonar/data:/opt/sonarqube/data
+    - /desenv/volumes/sonar/logs:/opt/sonarqube/logs
+    - /desenv/volumes/sonar/extensions:/opt/sonarqube/extensions
+    - /desenv/volumes/sonar/plugins:/opt/sonarqube/lib/bundled-plugins
     ports:
     - "9000:9000"
