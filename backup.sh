@@ -7,4 +7,4 @@ PATH_DOWNLOAD=/home/arcosta/Downloads/
     docker exec -t postgres sh -c "pg_dump -U postgres -Fc $DB_NAME > /opt/bkp/$DB_NAME-backup.backup"
 
 #Mover para Downloads
-    mv "/opt/bkp/$DB_NAME-backup.backup" $PATH_DOWNLOAD
+    mv "/desenv/volumes/postgres/bkp/$DB_NAME-backup.backup" $PATH_DOWNLOAD
