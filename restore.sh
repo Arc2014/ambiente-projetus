@@ -22,7 +22,7 @@ then
     then
         #Move backup
         echo "$(date +'%m/%d/%Y - %H:%M:%S') -> MOVENDO ARQUIVO BD $BACKUP_FILE para $PATH_VOLUME"
-        sudo cp $BACKUP_FILE $PATH_VOLUME
+        cp $BACKUP_FILE $PATH_VOLUME
         #Clean connetcions
         echo "$(date +'%m/%d/%Y - %H:%M:%S') -> REMOVENDO CONEXOES ATIVAS COM $DB_NAME"
         docker exec -it postgres psql -U postgres -c "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '$DB_NAME';" 
@@ -39,9 +39,9 @@ then
         #Ajustando BD
         ./script.sh $DB_NAME
         echo "$(date +'%m/%d/%Y - %H:%M:%S') -> DELETANDO ARQUIVO DE BACKUP"
-        sudo rm $PATH_VOLUME
+        rm $PATH_VOLUME
         echo "$(date +'%m/%d/%Y - %H:%M:%S') -> DELETANDO ARQUIVO DE BACKUP EM DOWNLOADS"
-        sudo rm $PATH_BACKUP_CALIMA -R
+        rm $PATH_BACKUP_CALIMA -R
         echo "$START_RESTORE -> INICIO !!!"
         echo "$(date +'%m/%d/%Y - %H:%M:%S') -> FIM !!!"
     else
